@@ -12,7 +12,7 @@ while True:
     try:
         data, address = sock.recvfrom(4096)
         if not data: break
-        user_data = data.decode().split(":")
+        user_data = data.decode().split(" : ")
         if user_data[1] == SERVICE_WORDS[0]:
             users.append(address)
             for addr in users:
@@ -23,8 +23,8 @@ while True:
         print(f"[ {user_data[0]} ] : {user_data[1]}")
         if user_data[1] == SERVICE_WORDS[1]:
             pass
-
-        for addr in users:
+        send_list = filter(lambda i: i!=address, users)
+        for addr in send_list:
             sock.sendto(f"[ {user_data[0]} ]: {user_data[1]}".encode(), addr)
     except KeyboardInterrupt:
         exit()

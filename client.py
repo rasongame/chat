@@ -24,7 +24,7 @@ try:
 except IndexError:
     raise Exception("Не указан IP.")
 
-sock.send(f"{nickname}: join".encode())
+sock.send(f"{nickname} : join".encode())
 # promptThread = Thread(target=spawnPrompt)
 
 pollThread = Thread(target=getUpdates)
@@ -34,10 +34,10 @@ pollThread.start()
 while True:
     try:
         msg = input("==> ")
-        prepared_msg = f"‏‏‎{nickname}: {msg}"
+        prepared_msg = f"‏‏‎{nickname} : {msg}"
         sock.send(prepared_msg.encode())
     except KeyboardInterrupt:
-        sock.send(f"{nickname}: disconnect".encode())
+        sock.send(f"{nickname} : disconnect".encode())
         exit()
 
 
