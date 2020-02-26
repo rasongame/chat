@@ -32,7 +32,7 @@ while True:
         prepared_msg = f"‏‏‎ ‎{msg}"
         sock.send(prepared_msg.encode())
     except KeyboardInterrupt:
-        sock.send("disconnect")
+        sock.send("disconnect".encode())
         exit()
 
 
