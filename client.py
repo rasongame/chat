@@ -14,7 +14,11 @@ def getUpdates():
 
 UDP_PORT = 2965
 sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-sock.connect((sys.argv[1], UDP_PORT))
+try:
+    sock.connect((sys.argv[1], UDP_PORT))
+except IndexError:
+    raise Exception("Не указан IP.")
+
 sock.send(f"join".encode())
 # promptThread = Thread(target=spawnPrompt)
 
