@@ -24,7 +24,7 @@ pollThread.start()
 
 while True:
     try:
-        msg = input("\r==> ")
+        msg = input("==> ")
         prepared_msg = f"‏‏‎ ‎{msg}"
         sock.send(prepared_msg.encode())
     except KeyboardInterrupt:
