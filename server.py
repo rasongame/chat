@@ -12,19 +12,20 @@ while True:
     try:
         data, address = sock.recvfrom(4096)
         if not data: break
-        if data.decode() == SERVICE_WORDS[0]:
+        user_data = data.decode().split(":")
+        if user_data[1] == SERVICE_WORDS[0]:
             users.append(address)
             for addr in users:
-                sock.sendto(f" {address[0]} is joined".encode(),addr )
+                sock.sendto(f" {user_data[0]} is joined".encode(),addr )
 
-        if data.decode() == "":
+        if user_data[1] == "":
             sock.sendto("Dont send blank space messages..",addr)
-        print(f"[ {address[0]} ] : {data.decode()}")
-        if data.decode() == SERVICE_WORDS[1]:
+        print(f"[ {user_data[0]} ] : {user_data[1]}")
+        if user_data[1] == SERVICE_WORDS[1]:
             pass
 
         for addr in users:
-            sock.sendto(f"[ {address[0]} ]: {data.decode()}".encode(), addr)
+            sock.sendto(f"[ {user_data[0]} ]: {user_data[1]}".encode(), addr)
     except KeyboardInterrupt:
         exit()
 

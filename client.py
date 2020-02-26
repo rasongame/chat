@@ -3,6 +3,7 @@ from time import sleep
 from math import pow
 from threading import Thread
 import sys
+from random import randint
 def getUpdates():
     try:
         while True:
@@ -11,15 +12,19 @@ def getUpdates():
     except KeyboardInterrupt:
         exit()
 
-
+nickname = ""
 UDP_PORT = 2965
 sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+if 2 >= 0 and 2 < len(sys.argv):
+    nickname = sys.argv[2]
+else:
+    nickname = randint(100, 200)
 try:
     sock.connect((sys.argv[1], UDP_PORT))
 except IndexError:
     raise Exception("Не указан IP.")
 
-sock.send(f"join".encode())
+sock.send(f"{nickname}: join".encode())
 # promptThread = Thread(target=spawnPrompt)
 
 pollThread = Thread(target=getUpdates)
@@ -29,10 +34,10 @@ pollThread.start()
 while True:
     try:
         msg = input("==> ")
-        prepared_msg = f"‏‏‎ ‎{msg}"
+        prepared_msg = f"‏‏‎{nickname}: {msg}"
         sock.send(prepared_msg.encode())
     except KeyboardInterrupt:
-        sock.send("disconnect".encode())
+        sock.send(f"{nickname}: disconnect".encode())
         exit()
 
 
