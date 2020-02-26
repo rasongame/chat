@@ -21,7 +21,7 @@ while True:
             sock.sendto("Dont send blank space messages..",addr)
         print(f"[ {address[0]} ] : {data.decode()}")
         if data.decode() == SERVICE_WORDS[1]:
-            users.remove(address)
+            pass
         for addr in users:
             sock.sendto(f"[ {address[0]} ]: {data.decode()}".encode(), addr)
     except KeyboardInterrupt:
