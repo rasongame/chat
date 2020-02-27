@@ -16,10 +16,14 @@ while True:
         if user_data[1] == SERVICE_WORDS[0]:
             users.append(address)
             for addr in users:
-                sock.sendto(f" {user_data[0]} is joined".encode(),addr )
+                sock.sendto(f" {user_data[0]} is joined".encode(),addr)
 
         if user_data[1] == "":
-            sock.sendto("Dont send blank space messages..",addr)
+            try:
+                pass
+            except Exception as err:
+                sock.sendto(b"fuck you",flags, address)
+            sock.sendto(b"Dont+send blank space messages..",address)
         print(f"[ {user_data[0]} ] : {user_data[1]}")
         if user_data[1] == SERVICE_WORDS[1]:
             pass
