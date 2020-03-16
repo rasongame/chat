@@ -1,5 +1,5 @@
 #VS-Code
-.gitignore
+.vscode
 
 bot_api.py
 
