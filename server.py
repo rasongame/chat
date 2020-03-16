@@ -17,7 +17,7 @@ while True:
         if user_data[1] == SERVICE_WORDS[0]:
             users.append(address)
             for addr in users:
-                sock.sendto(f" {user_data[0]} is joined".encode(),addr)
+                sock.sendto(f"\n {user_data[0]} is joined".encode(),addr)
 
         if user_data[1] == "":
             try:
@@ -25,12 +25,12 @@ while True:
             except Exception as err:
                 sock.sendto(b"fuck you",flags, address)
             sock.sendto(b"Dont+send blank space messages..",address)
-        print(f"[ {user_data[0]} ] : {user_data[1]}")
+        print(f"\n[ {user_data[0]} ] : {user_data[1]}")
         if user_data[1] == SERVICE_WORDS[1]:
             pass
         send_list = filter(lambda i: i!=address, users)
         for addr in send_list:
-            sock.sendto(f"[ {user_data[0]} ]: {user_data[1]}".encode(), addr)
+            sock.sendto(f"\n[ {user_data[0]} ]: {user_data[1]}".encode(), addr)
     except KeyboardInterrupt:
         exit()
 

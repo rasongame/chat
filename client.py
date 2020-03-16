@@ -11,7 +11,10 @@ def getUpdates():
         while True:
             new_msg = sock.recv(4096)
             print(new_msg.decode())
+
     except KeyboardInterrupt:
+        exit()
+    except EOFError:
         exit()
 
 nickname = ""
