@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import socket
 UDP_PORT = 2965
 TCP_PORT = 2966
